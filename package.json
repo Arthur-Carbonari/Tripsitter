@@ -1,0 +1,25 @@
+{
+  "name": "wt_nodeexpressblog",
+  "version": "1.0.0",
+  "description": "A simple blog website made using NodeJs and ExpressJs",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "blog"
+  ],
+  "author": "Arthur Martins",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.4",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
