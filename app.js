@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config()
 import express from "express"
 import { engine } from 'express-handlebars';
 import mongoose from "mongoose";
@@ -5,6 +7,8 @@ import mongoose from "mongoose";
 import mainRouter from "./routes/mainRouter.js";
 
 const app = express();
+
+const PORT = process.env.PORT || 3000
 
 // Connect to MongoDB
 const connectToMongoDB = async () => {
@@ -34,6 +38,6 @@ app.use(express.urlencoded({ extended: false }));
 //Router
 app.use(mainRouter)
 
-app.listen(5000)
+app.listen(PORT)
 
-console.log("Listening on port 5000")
+console.log("Listening on port", PORT)
