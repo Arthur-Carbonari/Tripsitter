@@ -1,1 +1,64 @@
-<h1>Example App: Home</h1>
+<section class="hero-section bg-dark text-light p-5 text-center">
+    <div class="hero-image">
+        <div class="hero-content">
+
+            <div class="container">
+                <h1 class="text-light mb-4">Discover the World <span class="text-warning">with Us</span></h1>
+                <p class="lead text-light mb-5">We're thrilled to have you here at our travel blog! Whether you're a
+                    seasoned traveler or simply dreaming of your next adventure, we've got you covered. Our blog is
+                    filled with inspiring stories, travel tips, and breathtaking photos from all around the world. So
+                    sit back, relax, and let us take you on a journey you'll never forget.</p>
+                <a href="#" class="btn btn-warning btn-lg">Start Exploring</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="subscription bg-white">
+    <div class="container">
+        <div class="subscription-wrapper">
+            <div
+                class="d-flex subscription-content justify-content-between align-items-center flex-column flex-md-row text-center text-md-left">
+                <h3 class="flex-fill">Subscribe <br> to our newsletter</h3>
+                <form action="#" class="row flex-fill">
+                    <div class="col-lg-7 my-md-2 my-2">
+                        <input type="email" class="form-control px-4 w-100 text-center text-md-left" id="email"
+                            placeholder="Your Email" name="email">
+                    </div>
+                    <div class="col-lg-5 my-md-2 my-2">
+                        <button type="submit" class="btn btn-primary btn-lg border-0 w-100">Subscribe Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-light ">
+
+    <section class="py-3 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light mb-3">Latest From The Blog</h1>
+                <p> Discover our latest tavel blog posts from around the world. Our passionate travel writers share
+                    insider tips and recommendations to inspire your next adventure, whether you're into cultural
+                    immersion or outdoor activities. Plan your next trip with confidence using our latest insights and
+                    discoveries.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="album pb-5">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                {{#each posts}}
+                {{> articleCard this}}
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+
+</section>
