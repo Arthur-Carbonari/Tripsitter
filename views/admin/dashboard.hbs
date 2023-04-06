@@ -1,1 +1,54 @@
-<h1>Example App: Admin Dashboard</h1>
+<div class="container py-5">
+
+    <div class="card my-5 br-1 p-4">
+        <div class="card-body">
+            <h2 class="card-title">Manage Users</h2>
+            <hr>
+            
+            {{> usersTable}}
+
+        </div>
+    </div>
+
+    <div class="card my-5 br-1 p-4">
+        <div class="card-body">
+            <h2 class="card-title">Example App: Admin Dashboard</h2>
+            <hr>
+
+
+            <form action="/admin/posts" method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Article Title</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="Enter the article title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Article Description</label>
+                    <textarea class="form-control" id="content" name="content" rows="3"
+                        placeholder="Enter the article description" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="imagePath" class="form-label">Image Path</label>
+                    <input type="text" class="form-control" id="imagePath" name="imagePath"
+                        placeholder="Enter the image path" required>
+                </div>
+                <div class="mb-3">
+                    <label for="imageDescription" class="form-label">Image Description</label>
+                    <textarea class="form-control" id="imageDescription" name="imageDescription" rows="3"
+                        placeholder="Enter the image description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+{{> adminDashboardModals}}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script defer src="/scripts/adminDashboard.js"></script>
