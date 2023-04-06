@@ -1,8 +1,9 @@
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import * as dotenv from 'dotenv'
 dotenv.config()
 import express from "express"
 import { engine } from 'express-handlebars';
 import mongoose from "mongoose";
+import cookieParser from 'cookie-parser';
 
 import mainRouter from "./routes/mainRouter.js";
 
@@ -34,6 +35,7 @@ app.set('views', './views');
 app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser())
 
 //Router
 app.use(mainRouter)
