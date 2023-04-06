@@ -1,0 +1,155 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Hero Section */
+
+.hero-section {
+    position: relative;
+    height: 80vh;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/main_mountains.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    /* position the pseudo-element over the element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #0000001c, #000000);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content .lead {
+    font-size: 1.3rem;
+    margin: 0 auto;
+}
+
+.hero-content {
+    position: absolute;
+    width: 100%;
+    bottom: 1%;
+    padding: 1rem;
+}
+
+/* Newsletter Section */
+
+section.subscription {
+    padding: 2.5rem;
+    background: linear-gradient(75deg, #022f42, #41367c);
+}
+
+section.subscription h3,
+.h3 {
+    color: #fff;
+    font-size: 30px;
+}
+
+.subscription-wrapper .form-control {
+    height: 60px;
+    background: #f8f9fa;
+    border-radius: 45px;
+}
+
+.subscription-wrapper .form-control:focus {
+    outline: none;
+    /* remove default focus outline */
+    box-shadow: 0 0 0 2px rgb(3, 27, 105);
+    /* add white aura box-shadow */
+    background: rgb(255, 255, 255);
+}
+
+
+section.subscription .btn-primary {
+    border: 0;
+    color: #fff;
+}
+
+
+
+section.subscription .btn {
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    text-transform: capitalize;
+    padding: 18px 45px;
+    border-radius: 45px;
+    font-weight: 500;
+    border: 1px solid;
+    position: relative;
+    z-index: 1;
+    transition: .3s ease-in;
+    overflow: hidden;
+}
+
+section.subscription .btn-primary:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 102%;
+    height: 100%;
+    background: linear-gradient(45deg, #00a8f4 0%, #02d1a1 100%);
+    z-index: -1;
+    transition: ease 0.3s;
+}
+
+/* Latest Posts Section */
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+/* My Classes */
+
+.my-bg-2 {
+    background: linear-gradient(75deg, #022f42, #41367c);
+}
+
+.br-1{
+    border-radius: 1.5rem;
+}
+
+.sub-div-p-0 div{
+    padding: 0 !important;
+}
+
+.my-searchbox label{
+    display: flex;
+}
+
+.my-searchbox input{
+    flex-grow: 1;
+}
