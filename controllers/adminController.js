@@ -65,18 +65,16 @@ const adminController = {
             for(let key in updatedUser){
                 user[key] = updatedUser[key]
             }
-
+            
             await user.validate()
-
-            user.save()
+            
+            await user.save()
 
             console.log("sucess", user);
 
             res.status(201).json({ sucess: true, user });
 
         } catch (err) {
-
-            console.log(err);
 
             let response = { sucess: false }
 
@@ -100,8 +98,6 @@ const adminController = {
                 response = err.errors
             }
 
-            console.log(response);
-
             res.status(400).json(response)
         }
     },
@@ -117,9 +113,7 @@ const adminController = {
             // Delete the user with the given ID from the database
             await User.findByIdAndDelete(_id)
 
-            console.log("here on the server");
-
-            res.status(201).json({ sucess: true})
+            res.status(201).json({ sucess: true, userId: _id})
 
 
         } catch (error) {
