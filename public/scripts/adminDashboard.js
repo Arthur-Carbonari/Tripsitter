@@ -14,33 +14,14 @@ async function adminDashboardMain() {
     const res = await fetch("/admin/users")
     const data = await res.json()
 
+    dataTableBuilder = new DataTableBuilder()
 
-    table = $('#usersTable').DataTable({
+    const table = dataTableBuilder
+        .setIdColumn({ data: '_id', visible: false, searchable: false })
+        .addActionColumn(DataTable.updateButton, DataTable.deleteButton)
+        .setDataColumns('email', 'username', 'firstName', 'lastName', 'adminRights')
+        .build('usersTable', data).table
 
-        data: data,
-        columns: [
-            { data: '_id', visible: false, searchable: false },
-            { data: 'email' },
-            { data: 'username' },
-            { data: 'firstName' },
-            { data: 'lastName' },
-            { data: 'adminRights' },
-            { data: '' , searchable: false}
-        ],
-        rowId: '_id',
-        columnDefs: [
-            {
-                targets: -1,
-                data: null,
-                defaultContent: '<div class="text-end"> <button class="btn btn-primary edit-button">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' +
-                    '<button class="btn btn-danger delete-button">Delete <i class="fa fa-trash-o" aria-hidden="true"></i> </button> </div>',
-            },
-        ],
-        pagingType: "first_last_numbers",
-        dom: "<'row align-items-center'<'col-sm-6 my-searchbox'f><'toolbar w-auto text-end flex-grow-1'>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row justify-content-between pt-2'<'col-sm-3'l><'col-sm-5 sub-div-p-0 text-center'i><'col-sm-3'p>>",
-    });
 
     $('div.toolbar').html('<button class="btn btn-primary" id="addUserButton" data-bs-toggle="modal" data-bs-target="#registerUserModal"> Create New <i class="fa fa-plus" aria-hidden="true"></i> </button>');
 
