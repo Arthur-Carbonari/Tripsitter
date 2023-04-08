@@ -153,3 +153,7 @@ section.subscription .btn-primary:after {
 .my-searchbox input{
     flex-grow: 1;
 }
+
+.mw-70{
+    max-width: 70% !important;
+}
