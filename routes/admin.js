@@ -6,7 +6,7 @@ import adminController from '../controllers/adminController.js';
 const adminRouter = express.Router();
 
 // Route for displaying the admin dashboard
-adminRouter.get('/', (req, res) => { res.render('admin/dashboard', { title: 'Admin Dashboard' }) });
+adminRouter.get('/', (req, res) => { res.render('adminDashboard', { title: 'Admin Dashboard' }) });
 
 // Route for displaying the admin user control interface
 adminRouter.route('/users')
