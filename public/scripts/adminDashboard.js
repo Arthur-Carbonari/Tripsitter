@@ -1,4 +1,15 @@
-async function adminDashboardMain() {
+dataTableBuilder = new DataTableBuilder()
+    .setIdColumn({ data: '_id', visible: false, searchable: false })
+    .addActionColumn(DataTable.updateButton, DataTable.deleteButton)
+
+function adminDashboardMain(){
+
+    initializetUserControlPanel()
+
+}
+
+
+async function initializetUserControlPanel() {
 
     const registerUserModal = $('#registerUserModal');
     const registerUserForm = new SmartForm('registerUserForm')
@@ -12,16 +23,11 @@ async function adminDashboardMain() {
     const res = await fetch("/admin/users")
     const data = await res.json()
 
-    dataTableBuilder = new DataTableBuilder()
-
     const usersTable = dataTableBuilder
-        .setIdColumn({ data: '_id', visible: false, searchable: false })
-        .addActionColumn(DataTable.updateButton, DataTable.deleteButton)
         .setDataColumns('email', 'username', 'firstName', 'lastName', 'adminRights')
         .build('usersTable', data)
 
     usersTable.setToolbar(DataTable.newButton);
-
 
     registerUserModal.on('hidden.bs.modal', () => { registerUserForm.resetForm() })
 
