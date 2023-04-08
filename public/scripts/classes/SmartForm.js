@@ -54,7 +54,7 @@ class SmartForm{
         })
     }
 
-    async submitForm(targetUrl, method){
+    async submitForm(targetUrl, method='POST'){
 
         const formData = this.getFormData()
 

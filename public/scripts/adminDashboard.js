@@ -67,7 +67,7 @@ async function initializetUserControlPanel() {
         registerUserForm.form.adminRights.value = registerUserForm.form.adminRights.checked
 
         try {
-            const resData = await registerUserForm.submitForm('/admin/users', 'POST')
+            const resData = await registerUserForm.submitForm('/admin/users')
 
             if (resData.sucess) {
 
