@@ -53,13 +53,47 @@ class DataTableBuilder{
 
 class DataTable {
 
+    static newButton = '<button class="btn btn-primary new-button"> Create New <i class="fa fa-plus" aria-hidden="true"></i> </button>'
     static updateButton = '<button class="btn btn-primary edit-button">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>'
     static deleteButton = '<button class="btn btn-danger delete-button">Delete <i class="fa fa-trash-o" aria-hidden="true"></i> </button>'
 
     constructor(tableId, options){
 
-        this.table = $('#' + tableId).DataTable(options)
+        this.tableId = '#' + tableId
+
+        this.table = $(this.tableId).DataTable(options)
 
     }
+
+    addRow( rowData ){
+        this.table.row.add(rowData).draw()
+    }
+
+    getRowById( rowId ){
+        return this.table.row('#' + rowId)
+    }
+
+    overwriteRow(rowId, newData){
+        this.getRowById(rowId).data(newData).draw()
+    }
+
+    deleteRow(rowId){
+        this.table.row('#' + rowId).remove().draw()
+    }
+
+    getRowDataFromButton( buttonNode ){
+        return this.table.row($(buttonNode).parents('tr')).data();
+    }
+
+    setToolbar( ...htmlString ){
+        $('div.toolbar').html(htmlString.join())
+    }
+
+    addAction( buttonClass, action ){
+        $(this.tableId+'_wrapper').on('click', buttonClass, (e) => {
+            action(e)
+        });
+    }
+
 
 }
