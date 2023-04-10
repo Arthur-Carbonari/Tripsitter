@@ -11,7 +11,7 @@ class DataTableBuilder{
 
     addActionColumn( ...buttonElementStrings ){
 
-        let defaultContent = '<div class="text-end">' + buttonElementStrings.join()  + '</div>'
+        let defaultContent = '<div class="text-end">' + buttonElementStrings.join("")  + '</div>'
 
         this.actionColumn = {
             targets: -1,
