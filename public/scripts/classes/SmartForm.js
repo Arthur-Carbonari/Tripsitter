@@ -1,12 +1,10 @@
 class SmartForm{
 
 
-    constructor( formId ){
+    constructor( formId, keyFieldsNames=null ){
         
         this.form = document.getElementById(formId)
-        this.inputFields = Array.from(this.form.getElementsByTagName('input'))
-        this.keyFields = this.inputFields.filter( field => field.classList.contains('key-field'))
-
+        this.keyFields = keyFieldsNames ? keyFieldsNames.map( fieldName => { return this.form[fieldName]}) : Array.from(this.form.getElementsByTagName('input'))
     }
 
     getFieldValue( fieldName ){
@@ -15,20 +13,20 @@ class SmartForm{
     }
 
     resetForm(){
-        this.inputFields.forEach( field => {
+        this.keyFields.forEach( field => {
             field.value = ''
             field.classList.remove('is-invalid')
         })
     }
 
     clearWarnings(){
-        this.inputFields.forEach( field => {
+        this.keyFields.forEach( field => {
             field.classList.remove('is-invalid')
         })
     }
 
     addWarnings(warning){
-        this.inputFields.forEach( field => {
+        this.keyFields.forEach( field => {
             if(warning[field.name]){
                 field.classList.add('is-invalid')
                 field.nextElementSibling.innerHTML = warning[field.name].message
@@ -37,14 +35,14 @@ class SmartForm{
     }
 
     getFormData(){
-        return this.inputFields.reduce( (formValues, field) => {
+        return this.keyFields.reduce( (formValues, field) => {
             formValues[field.name] = field.value
             return formValues
         }, {})
     }
 
     setData( data ){
-        this.inputFields.forEach( field => {
+        this.keyFields.forEach( field => {
             if (data[field.name]){
                 field.value = data[field.name]
             }
