@@ -1,6 +1,6 @@
 import express from 'express';
 
-import Post from '../models/post.js';
+import Post from '../models/Article.js';
 import adminController from '../controllers/adminController.js';
 
 const adminRouter = express.Router();
@@ -15,16 +15,14 @@ adminRouter.route('/users')
     .patch(adminController.usersPatch)
     .delete(adminController.usersDelete)
 
-// Route for displaying the admin posts control interface
-adminRouter.route('/posts')
-    .get((req, res) => { res.render('admin/posts', { title: 'Admin list of posts' }) })
-    .post(adminController.postsPost)
+// Route for displaying the admin articles control interface
+adminRouter.route('/articles')
+    .get(adminController.articlesGet)
+    .post(adminController.articlesPost)
     .put((req, res) => {
-        // Code to update a post goes here
+        // Code to update a article goes here
     })
-    .delete((req, res) => {
-        // Code to delete a post goes here
-    });
+    .delete(adminController.articlesDelete);
 
 
 
