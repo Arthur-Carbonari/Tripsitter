@@ -1,5 +1,3 @@
-import * as dotenv from 'dotenv'
-dotenv.config() // configures the .env variables
 import express from "express"
 import { engine } from 'express-handlebars';
 import mongoose from "mongoose";
