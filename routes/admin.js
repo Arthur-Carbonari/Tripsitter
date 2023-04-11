@@ -19,9 +19,7 @@ adminRouter.route('/users')
 adminRouter.route('/articles')
     .get(adminController.articlesGet)
     .post(adminController.articlesPost)
-    .put((req, res) => {
-        // Code to update a article goes here
-    })
+    .patch(adminController.articlesPatch)
     .delete(adminController.articlesDelete);
 
 

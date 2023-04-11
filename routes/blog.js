@@ -2,26 +2,23 @@
 
 import express from 'express';
 
+import blogController from '../controllers/blogController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
+
 const blogRouter = express.Router();
 
 // Route for displaying all posts
-blogRouter.get('/', (req, res) => {
-    res.render('blog', { title: 'Blog', year: new Date().getFullYear() });
-});
+blogRouter.get('/', blogController.blogGet);
 
 // Route for displaying a specific post
-blogRouter.get('/:id', (req, res) => {
+blogRouter.get('/:id', blogController.blogIdGet);
 
-    const id = req.params.id;
-    console.log("post id is ", id);
+// add middleware here to protect following routes from non user access 
+blogRouter.use(authMiddleware.requireUserAuth)
 
-    const post = { title: "Title of the post" } // later change this to get the post
-
-    if (post) {
-        res.render('post', { title: post.title, year: new Date().getFullYear(), postId: id });
-    } else {
-        res.status(404).send('Post not found');
-    }
-});
+// route used for comments posting and deletion
+blogRouter.route('/:id/comments')
+    .post(blogController.commentsPost)
+    .delete(blogController.commentsDelete)
 
 export default blogRouter;

@@ -8,22 +8,38 @@ import User from "../models/user.js";
 //max age is of 1 day
 const maxAge = 1 * 24 * 60 * 60
 
-const createAuthToken = (id, username, adminRights) => {
-    return jwt.sign({ id, username, adminRights }, process.env.JWT_SECRET, { expiresIn: maxAge })
+/**
+ * Create a new JWT token with the given user ID
+ *
+ * @param {string} id - The ID of the user to create a token for
+ * @returns {string} The newly created JWT token
+ */
+const createAuthToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge })
 }
 
+/**
+ * A controller for handling authentication-related requests
+ */
 const authController = {
 
-
+    /**
+     * Handle a POST request to log a user in
+     *
+     * @param {object} req - The HTTP request object
+     * @param {object} res - The HTTP response object
+     */
     loginPost: async (req, res) => {
 
         try {
             const { emailOrUsername, password } = req.body
-            
+                        
             const user = await User.login(emailOrUsername, password)
 
-            const authToken = createAuthToken(user._id, user.username, user.adminRights)
+            // Create a new JWT token for the logged-in user
+            const authToken = createAuthToken(user._id)
 
+            // Set the JWT token as an HTTP-only cookie
             res.cookie('jwt_token', authToken, {httpOnly: true, maxAge: maxAge * 1000})
             res.status(201).json({ sucess: true });
 
@@ -39,16 +55,24 @@ const authController = {
         }
     },
 
+    /**
+     * Handle a POST request to create a new user account
+     *
+     * @param {object} req - The HTTP request object
+     * @param {object} res - The HTTP response object
+     */
     signupPost: async (req, res) => {
         try {
 
             const { firstName, lastName, email, username, password } = req.body
 
-            //check if email exists in db
+            // Check if email already exists in the database and create a new user if it does not
             const newUser = await User.create( {firstName, lastName, email, username, password})
 
-            const authToken = createAuthToken(newUser._id, newUser.username, newUser.adminRights)
+            // Create a new JWT token for the newly created user
+            const authToken = createAuthToken(newUser._id)
 
+            // Set the JWT token as an HTTP-only cookie
             res.cookie('jwt_token', authToken, {httpOnly: true, maxAge: maxAge * 1000})
             res.status(201).json({ sucess: true });
 
@@ -80,6 +104,12 @@ const authController = {
         }
     },
 
+    /**
+     * Handle a GET request to logout a user account
+     *
+     * @param {object} req - The HTTP request object
+     * @param {object} res - The HTTP response object
+     */
     logoutGet: (req, res) => {
 
         // logout user by destroying the token

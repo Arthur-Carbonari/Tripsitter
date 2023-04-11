@@ -1,1 +1,22 @@
-<h1>Example App: Blog Page</h1>
+
+<div class="container">
+    <h1 class="mb-3 mt-5 text-center">Our Articles</h1>
+
+    {{#each articles}}
+    <div class="container my-5">
+        {{> articleCard this}}
+    </div>
+    {{/each}}
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            {{#if (gt pages 0)}}
+            {{#times pages}}
+            <li class="page-item {{#if (equal @root.currentPage this)}}active{{/if}}">
+                <a class="page-link" href="/blog?category={{@root.category}}&page={{this}}">{{this}}</a>
+            </li>
+            {{/times}}
+            {{/if}}
+        </ul>
+    </nav>
+</div>

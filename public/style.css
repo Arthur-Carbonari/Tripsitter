@@ -138,22 +138,38 @@ section.subscription .btn-primary:after {
     background: linear-gradient(75deg, #022f42, #41367c);
 }
 
-.br-1{
+.br-1 {
     border-radius: 1.5rem;
 }
 
-.sub-div-p-0 div{
+.sub-div-p-0 div {
     padding: 0 !important;
 }
 
-.my-searchbox label{
+.my-searchbox label {
     display: flex;
 }
 
-.my-searchbox input{
+.my-searchbox input {
     flex-grow: 1;
 }
 
-.mw-70{
+.mw-70 {
     max-width: 70% !important;
+}
+
+.articleBody p {
+    margin-bottom: 1.5rem !important;
+}
+
+.articleBody h2 {
+    font-weight: bolder !important;
+    margin-bottom: 1.5rem !important;
+    margin-top: 3rem !important;
+}
+
+.articleBody h3 {
+    font-weight: bolder !important;
+    margin-bottom: 1.5rem !important;
+    margin-top: 3rem !important;
 }

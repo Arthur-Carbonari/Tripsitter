@@ -1,0 +1,19 @@
+<div class="comment">
+
+    <div class="d-flex">
+        <div class="flex-shrink-0 h-50">
+            <img class="rounded-circle img-fluid" src="/images/user.png" alt="..." />
+        </div>
+        <div class="ms-3">
+            <div class="fw-bold">{{this.username}}</div>
+            {{this.body}}
+        </div>
+    </div>
+    <div class="text-end">
+        <small> 
+            {{#if (showDeleteButton @root.adminRights @root.username this.username)}} <a class="text-danger delete-comment" href="!#" value="{{this._id}}">delete</a> {{/if}} 
+            
+            | {{getLocalDateString this.date}}
+        </small>
+    </div>
+</div>
